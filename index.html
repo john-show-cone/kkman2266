@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三國防禦塔 - 策略戰爭遊戲</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 遊戲頭部 -->
+        <div class="header">
+            <div class="title">
+                <h1>⚔️ 三國防禦塔 ⚔️</h1>
+                <p class="subtitle">歷史戰役 - 策略防禦</p>
+            </div>
+            <div class="game-stats">
+                <div class="stat">
+                    <span class="stat-label">關卡:</span>
+                    <span class="stat-value" id="level-display">1</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">黃金:</span>
+                    <span class="stat-value" id="gold-display">500</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">血量:</span>
+                    <span class="stat-value" id="health-display">100</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">波數:</span>
+                    <span class="stat-value" id="wave-display">1/5</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="stage-title-bar">
+            <span id="current-stage-name">請選擇歷史戰役</span>
+        </div>
+
+        <!-- 主遊戲區域 -->
+        <div class="game-wrapper">
+            <!-- 左侧：遊戲畫布 -->
+            <div class="game-area">
+                <canvas id="gameCanvas" width="800" height="600"></canvas>
+                <div class="game-info">
+                    <button id="start-wave-btn" class="btn btn-primary">開始波次</button>
+                    <button id="pause-btn" class="btn btn-secondary">暫停</button>
+                    <button id="speed-btn" class="btn btn-secondary">2x 速度</button>
+                </div>
+            </div>
+
+            <!-- 右侧：塔選擇 -->
+            <div class="sidebar">
+                <div class="sidebar-tabs">
+                    <button class="tab-button active" data-tab="general">武將塔</button>
+                    <button class="tab-button" data-tab="soldier">士兵塔</button>
+                    <button class="tab-button" data-tab="history">戰役</button>
+                    <button class="tab-button" data-tab="upgrade">升級</button>
+                </div>
+
+                <div class="tab-content active" id="tab-general">
+                    <div class="tower-grid" id="general-towers">
+                        <!-- 武將塔將被動態添加 -->
+                    </div>
+                </div>
+
+                <div class="tab-content" id="tab-soldier">
+                    <div class="tower-grid" id="soldier-towers">
+                        <!-- 士兵塔將被動態添加 -->
+                    </div>
+                </div>
+
+                <div class="tab-content" id="tab-history">
+                    <div class="stage-grid" id="stage-grid">
+                        <!-- 關卡將被動態添加 -->
+                    </div>
+                </div>
+
+                <div class="tab-content" id="tab-upgrade">
+                    <div class="upgrade-grid" id="upgrade-grid">
+                        <p style="padding: 12px; color: #ccc;">尚未放置任何塔。請先在畫布上放置武將塔或士兵塔。</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>📊 塔信息</h2>
+                    <div class="tower-info" id="tower-info">
+                        <p>👆 點擊塔查看詳細信息</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>🌍 地形效果</h2>
+                    <div class="terrain-info" id="terrain-info">
+                        <p>當前地形: <strong id="current-terrain">普通</strong></p>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <!-- 遊戲結束彈窗 -->
+    <div id="game-over-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2 id="game-over-title">遊戲結束</h2>
+            <p id="game-over-text">你的得分: <span id="final-score">0</span></p>
+            <div class="modal-buttons">
+                <button class="btn btn-primary" onclick="location.reload()">重新開始</button>
+                <button class="btn btn-secondary" id="next-stage-btn" onclick="goToStageSelect()">進入下一關卡</button>
+            </div>
+            <div id="final-credit" style="display:none; margin-top: 12px; color: #fff; font-size: 0.95em;">遊戲製作：岡農電機 謝宗良 師</div>
+        </div>
+    </div>
+
+    <!-- 腳本文件 -->
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/towers.js"></script>
+    <script src="js/enemies.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
